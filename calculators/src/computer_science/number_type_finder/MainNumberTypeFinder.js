@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Box,
   Button,
@@ -12,7 +13,25 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
+import { checkArmstrong } from "./Armstrong";
+import { checkKaprekar } from "./Kaprekar";
+import { checkAutomorphic } from "./Automorphic";
+import { checkPerfect } from "./Perfect";
+import { checkAmicable } from "./Amicable";
+import { checkFibonacci } from "./Fibonacci";
+import { checkPalindromic } from "./Palindromic";
+import { checkSmith } from "./Smith";
+import { checkHarshad } from "./Harshad";
+import { checkHappy } from "./Happy";
+import { checkZeisel } from "./Zeisel";
+import { checkPancake } from "./Pancake";
+import { checkZuckerman } from "./Zuckerman";
+import { checkTaxicab } from "./Taxicab";
+import { checkAbundant } from "./Abundant";
+import { checkDisarium } from "./Disarium";
+import { checkEmirp } from "./Emirp";
+import { checkFascinating } from "./Fascinating";
+import { checkMagic } from "./Magic";
 function MainNumberTypeFinder() {
   const [number, setnumber] = useState("");
   const [selectedNumberTypes, setselectedNumberTypes] = useState([]);
@@ -45,89 +64,54 @@ function MainNumberTypeFinder() {
         case "amicable":
           calculatedResults.amicable = checkAmicable(number);
           break;
+        case "fibonacci":
+          calculatedResults.fibonacci = checkFibonacci(number);
+          break;
+        case "palindromic":
+          calculatedResults.palindromic = checkPalindromic(number);
+          break;
+        case "smith":
+          calculatedResults.smith = checkSmith(number);
+          break;
+        case "harshad":
+          calculatedResults.harshad = checkHarshad(number);
+          break;
+        case "happy":
+          calculatedResults.happy = checkHappy(number);
+          break;
+        case "zeisel":
+          calculatedResults.zeisel = checkZeisel(number);
+          break;
+        case "pancake":
+          calculatedResults.pancake = checkPancake(number);
+          break;
+        case "taxicab":
+          calculatedResults.taxicab = checkTaxicab(number);
+          break;
+        case "zuckerman":
+          calculatedResults.zuckerman = checkZuckerman(number);
+          break;
+        case "abundant":
+          calculatedResults.abundant = checkAbundant(number);
+          break;
+        case "disarium":
+          calculatedResults.disarium = checkDisarium(number);
+          break;
+        case "emirp":
+          calculatedResults.emirp = checkEmirp(number);
+          break;
+        case "fascinating":
+          calculatedResults.fascinating = checkFascinating(number);
+          break;
+        case "magic":
+          calculatedResults.magic = checkMagic(number);
+          break;
         default:
           break;
       }
     });
 
     setresults(calculatedResults);
-  };
-
-  // * functions to check number types
-
-  // armstrong
-  const checkArmstrong = (num) => {
-    let value = 0;
-    let x = num.toString();
-    x = x.split("");
-    x.forEach((digit) => {
-      value += parseInt(digit) ** x.length;
-    });
-    return value === num;
-  };
-
-  // Kaprekar Number
-  const checkKaprekar = (num) => {
-    let x = num ** 2;
-    x = x.toString();
-    const mid = Math.floor((x.length - 1) / 2);
-    const leftNum = x.substring(0, mid + 1);
-    const rightNum = x.substring(mid + 1, x.length);
-    const value = parseInt(leftNum) + parseInt(rightNum);
-    return value === num;
-  };
-
-  // Automorphic Number
-  const checkAutomorphic = (num) => {
-    let x = num ** 2;
-    x = x.toString();
-    x = x.substring(x.length - num.toString().length, x.length);
-    return parseInt(x) === num;
-  };
-
-  // sum of proper divisors of a Number
-  const sumProperDivisors = (num) => {
-    if (num <= 1) {
-      return 0;
-    }
-
-    let sum = 1;
-    const sqrtNum = Math.sqrt(num);
-
-    for (let i = 2; i <= sqrtNum; i++) {
-      if (num % i === 0) {
-        sum += i;
-        const divisor = num / i;
-        if (divisor !== i) {
-          sum += divisor;
-        }
-      }
-    }
-
-    return sum;
-  };
-
-  // Perfect Number
-  const checkPerfect = (num) => {
-    if (num <= 0) {
-      return false;
-    } else {
-      return sumProperDivisors(num) === num;
-    }
-  };
-
-  // Amicable Number
-  const checkAmicable = (num) => {
-    const x = sumProperDivisors(num);
-    if (x !== num) {
-      if (sumProperDivisors(x) === num) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
   };
 
   return (
@@ -169,6 +153,20 @@ function MainNumberTypeFinder() {
           <MenuItem value="automorphic">Automorphic Number</MenuItem>
           <MenuItem value="perfect">Perfect Number</MenuItem>
           <MenuItem value="amicable">Amicable Number</MenuItem>
+          <MenuItem value="fibonacci">Fibonacci Number</MenuItem>
+          <MenuItem value="palindromic">Palindromic Number</MenuItem>
+          <MenuItem value="smith">Smith Number</MenuItem>
+          <MenuItem value="harshad">Harshad Number</MenuItem>
+          <MenuItem value="happy">Happy Number</MenuItem>
+          <MenuItem value="zeisel">Zeisel Number</MenuItem>
+          <MenuItem value="pancake">Pancake Number</MenuItem>
+          <MenuItem value="taxicab">Taxicab Number</MenuItem>
+          <MenuItem value="zuckerman">Zuckerman Number</MenuItem>
+          <MenuItem value="abundant">Abundant Number</MenuItem>
+          <MenuItem value="disarium">Disarium Number</MenuItem>
+          <MenuItem value="emirp">Emirp Number</MenuItem>
+          <MenuItem value="magic">Magic Number</MenuItem>
+          <MenuItem value="fascinating">Fascinating Number</MenuItem>
         </Select>
       </FormControl>
       {/* button to check the number type */}
